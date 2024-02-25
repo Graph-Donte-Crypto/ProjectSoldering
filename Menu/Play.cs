@@ -12,6 +12,7 @@ public partial class Play : Button
     private void Play_Pressed()
     {
         GetTree().ChangeSceneToFile("res://Level/Level.tscn");
+        GD.Print("Hello?");
     }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.

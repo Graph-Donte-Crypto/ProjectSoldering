@@ -11,6 +11,7 @@ public partial class Player : CharacterBody2D
 
 	public override void _PhysicsProcess(double delta)
 	{
+		GD.Print(DateTime.Now.ToString());
 		Vector2 velocity = Velocity;
 
 		// Add the gravity.

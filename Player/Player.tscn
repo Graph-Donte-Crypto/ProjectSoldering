@@ -1,10 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://cpdvf0nyqmysh"]
 
-[ext_resource type="Script" path="res://Player/Player.cs" id="1_yske0"]
+[ext_resource type="Script" path="res://Player/Player.cs" id="1_d6v0r"]
 [ext_resource type="Texture2D" uid="uid://bdjoevwnnmwfu" path="res://Player/box32.png" id="2_la56s"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_g1hk6"]
-size = Vector2(16, 16)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xrh17"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_t2s1h"]
 animations = [{
@@ -12,21 +11,18 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("2_la56s")
 }],
-"loop": true,
+"loop": false,
 "name": &"idle",
 "speed": 5.0
 }]
 
 [node name="Player" type="CharacterBody2D"]
-motion_mode = 1
-script = ExtResource("1_yske0")
+script = ExtResource("1_d6v0r")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_g1hk6")
+shape = SubResource("RectangleShape2D_xrh17")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(1.90735e-06, -1.19209e-07)
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_t2s1h")
 animation = &"idle"
-autoplay = "idle"
