@@ -3,8 +3,6 @@
 [ext_resource type="Script" path="res://Player/Player.cs" id="1_d6v0r"]
 [ext_resource type="Texture2D" uid="uid://bdjoevwnnmwfu" path="res://Player/box32.png" id="2_la56s"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_xrh17"]
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_t2s1h"]
 animations = [{
 "frames": [{
@@ -13,16 +11,19 @@ animations = [{
 }],
 "loop": false,
 "name": &"idle",
-"speed": 5.0
+"speed": 0.0
 }]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xrh17"]
+size = Vector2(32, 32)
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_d6v0r")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_xrh17")
-
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(0.5, 0.5)
+position = Vector2(4.76837e-07, 4.76837e-07)
 sprite_frames = SubResource("SpriteFrames_t2s1h")
 animation = &"idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_xrh17")

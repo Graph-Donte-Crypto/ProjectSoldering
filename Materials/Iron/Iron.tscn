@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://dt081ocvdo4i1"]
+
+[ext_resource type="Texture2D" uid="uid://c4lpw6slapa3i" path="res://Materials/Iron/Item32.png" id="1_6eyne"]
+[ext_resource type="Script" path="res://Materials/Iron/Iron.cs" id="1_u810m"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_r7pwd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_6eyne")
+}],
+"loop": false,
+"name": &"default",
+"speed": 0.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h66g1"]
+size = Vector2(32, 32)
+
+[node name="Iron" type="Area2D"]
+script = ExtResource("1_u810m")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(7.15256e-07, 7.15256e-07)
+sprite_frames = SubResource("SpriteFrames_r7pwd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_h66g1")

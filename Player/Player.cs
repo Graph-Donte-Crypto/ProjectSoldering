@@ -1,14 +1,17 @@
 using Godot;
+using Godot.Collections;
 using System;
 
 public partial class Player : CharacterBody2D
 {
-	public const float Speed = 300.0f;
+	public const float Speed = 50.0f;
+	public const float LimitSpeed = 300f;
 	public const float JumpVelocity = -120.0f;
 	public float FadingJumpVelocity = 0;
 	public int DefaultAmountOfJump = 3;
 	public int AmountOfJump = 3;
 	public bool JumpOver = true;
+	public float d1Velocity = 0;
 
 	public float SavedVelocity = 0;
 	public float DashVelocity = 750;
@@ -16,6 +19,16 @@ public partial class Player : CharacterBody2D
 	public float TempDashTime = 0;
 	public float DefaultDashTimeout = 1f;
 	public float TempDashTimeout = 0;
+
+	Dictionary<string, int> Materials { get; set; } = new Dictionary<string, int>();
+	public void AddMaterial(string key, int value)
+	{
+		if (Materials.TryGetValue(key, out int v))
+			Materials[key] = value + v;
+		else 
+			Materials.Add(key, value);
+	}
+	public int GetMaterial(string key) => Materials.TryGetValue(key, out int v) ? v : 0;
 
 
     // Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -110,15 +123,25 @@ public partial class Player : CharacterBody2D
 
             if (direction != Vector2.Zero)
 			{
-				velocity.X = direction.X * Speed;
-			}
+				velocity.X += direction.X * Speed;
+				if (MathF.Abs(velocity.X) > LimitSpeed)
+					velocity.X = direction.X * LimitSpeed;
+                d1Velocity = velocity.X;
+            }
 			else
 			{
-				velocity.X = Mathf.MoveToward(Velocity.X, 0, Speed);
+				if (Math.Abs(d1Velocity) > 1f)
+				{
+					d1Velocity *= 0.92f;
+					velocity.X = d1Velocity;
+				}
+				//velocity.X = Mathf.MoveToward(Velocity.X, 0, Speed);
 			}
 		}
-
-		Velocity = velocity;
+		int? a = 0;
+		a.Value
+		
+        Velocity = velocity;
 		MoveAndSlide();
 	}
 }
